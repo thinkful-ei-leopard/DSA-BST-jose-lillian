@@ -75,21 +75,42 @@ wrongBST.insertWrong(7)
 // a BTS can only have two children nodes & right branch has a larger key
 // than root node, left branch has a smaller key than root node
 
-function checkBST(tree) {
-    let answer = true
+// function checkBST(tree) {
+//     let answer = true
 
-    if(tree.right !== null && tree.right.key < tree.key) {
-        answer = false
-    } else if(tree.right !== null && tree.right.key > tree.key) {
-        checkBST(tree.right)
-    } else if(tree.left !== null && tree.left.key > tree.key) {
-        answer = false
-    } else if(tree.left !== null && tree.left.key < tree.key) {
-        checkBST(tree.left)
-    }
+//     if(tree.right !== null && tree.right.key < tree.key) {
+//         answer = false
+//     } else if(tree.right !== null && tree.right.key > tree.key) {
+//         checkBST(tree.right)
+//     } else if(tree.left !== null && tree.left.key > tree.key) {
+//         answer = false
+//     } else if(tree.left !== null && tree.left.key < tree.key) {
+//         checkBST(tree.left)
+//     }
 
-    return answer
+//     return answer
+// }
+
+// console.log(checkBST(wrongBST))
+// console.log(checkBST(BST))
+
+//drill 7
+
+function third(tree, arr = []){
+
+  if(tree){
+    arr.push(tree.key);
+    third(tree.left, arr);
+    third(tree.right, arr);
+  }
+
+  if(arr.length < 3) {
+    return 'length is less than 3';
+  }
+
+  const sorted = arr.sort((a,b) => a - b);
+
+  return sorted[sorted.length - 3];
 }
 
-console.log(checkBST(wrongBST))
-console.log(checkBST(BST))
+//console.log(third(BST));
