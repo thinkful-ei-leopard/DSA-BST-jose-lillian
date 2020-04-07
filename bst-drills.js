@@ -12,6 +12,8 @@ BST.insert(2)
 BST.insert(5)
 BST.insert(7)
 
+                         
+
 let wrongBST = new BinarySearchTree()
 wrongBST.insertWrong(3)
 wrongBST.insertWrong(1)
@@ -56,17 +58,17 @@ wrongBST.insertWrong(7)
 
 // drill 5
 
-// function height(tree, count = 0) {
-//   if(tree === null){
-//     return 0;
-//   }
+function height(tree, count = 0) {
+  if(tree === null){
+    return 0;
+  }
 
-//   if(tree.left === null && tree.right === null){
-//     return count;
-//   }
+  if(tree.left === null && tree.right === null){
+    return count;
+  }
   
-//   return Math.max(height(tree.right, count+1), height(tree.left, count + 1));
-// }
+  return Math.max(height(tree.right, count+1), height(tree.left, count + 1));
+}
 
 // console.log(height(BST));
 
@@ -114,3 +116,19 @@ function third(tree, arr = []){
 }
 
 //console.log(third(BST));
+
+function balanced(tree) {
+  if(tree === null){
+    return 'tree is empty';
+  }
+
+  if(tree.left === null && tree.right === null){
+    return;
+  }
+  let rightCount = height(tree.right)
+  let leftCount = height(tree.left)
+
+  return Math.abs(rightCount - leftCount) <= 1 ? 'is balanced' : 'is not balanced'
+}
+
+console.log(balanced(BST))
