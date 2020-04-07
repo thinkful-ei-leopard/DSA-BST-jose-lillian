@@ -12,6 +12,16 @@ BST.insert(2)
 BST.insert(5)
 BST.insert(7)
 
+let wrongBST = new BinarySearchTree()
+wrongBST.insertWrong(3)
+wrongBST.insertWrong(1)
+wrongBST.insertWrong(4)
+wrongBST.insertWrong(6)
+wrongBST.insertWrong(9)
+wrongBST.insertWrong(2)
+wrongBST.insertWrong(5)
+wrongBST.insertWrong(7)
+
 //console.log(BST)
 
 // function tree(t){
@@ -46,16 +56,40 @@ BST.insert(7)
 
 // drill 5
 
-function height(tree, count = 0) {
-  if(tree === null){
-    return 0;
-  }
+// function height(tree, count = 0) {
+//   if(tree === null){
+//     return 0;
+//   }
 
-  if(tree.left === null && tree.right === null){
-    return count;
-  }
+//   if(tree.left === null && tree.right === null){
+//     return count;
+//   }
   
-  return Math.max(height(tree.right, count+1), height(tree.left, count + 1));
+//   return Math.max(height(tree.right, count+1), height(tree.left, count + 1));
+// }
+
+// console.log(height(BST));
+
+
+// drill 6
+// a BTS can only have two children nodes & right branch has a larger key
+// than root node, left branch has a smaller key than root node
+
+function checkBST(tree) {
+    let answer = true
+
+    if(tree.right !== null && tree.right.key < tree.key) {
+        answer = false
+    } else if(tree.right !== null && tree.right.key > tree.key) {
+        checkBST(tree.right)
+    } else if(tree.left !== null && tree.left.key > tree.key) {
+        answer = false
+    } else if(tree.left !== null && tree.left.key < tree.key) {
+        checkBST(tree.left)
+    }
+
+    return answer
 }
 
-console.log(height(BST));
+console.log(checkBST(wrongBST))
+console.log(checkBST(BST))
